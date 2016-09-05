@@ -13,6 +13,7 @@
     "cache-manager": "^2.1.2",
     "he": "^1.1.0",
     "lodash": "^4.14.1",
+    "mongodb": "^2.2.9",
     "phridge": "^2.0.0",
     "signal-exit": "^3.0.0"
   },
@@ -21,12 +22,13 @@
     "sinon": "^1.17.5"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "./node_modules/.bin/mocha"
   },
   "bin": {
     "prerender": "server.js"
   },
   "engines": {
-    "node": ">=0.12.9"
+    "node": ">=5.0.0"
   }
 }
