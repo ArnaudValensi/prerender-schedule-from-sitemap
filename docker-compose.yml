@@ -1,4 +1,4 @@
-prerender-schedule-from-sitemap:
+prerender:
   image: arnaudvalensi/prerender-schedule-from-sitemap
   ports:
     - 3000:3000
