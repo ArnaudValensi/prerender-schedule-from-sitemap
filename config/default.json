@@ -1,4 +1,4 @@
 {
-  "sitemaps": "http://www.chatel-properties.com/sitemap.xml",
+  "sitemaps": "http://yourdomain/sitemap.xml",
   "ttl": 6 // Recache interval in hour
 }
