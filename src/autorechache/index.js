@@ -1,7 +1,4 @@
-
-function getConfig(configPath) {
-
-}
+import config from 'config';
 
 function sitemapToPages(sitemapUrl) {
   // TODO
@@ -15,12 +12,11 @@ function runCron(ttl) {
   // TODO
 }
 
-export default ({ configPath }) => {
-  if (!configPath) {
-    throw new Error('configPath needed');
-  }
+export default () => {
 
-  const config = getConfig(configPath);
+  const sitemapUrls = config.get('sitemaps');
+
+  console.log(sitemapUrls);
 
   // const pages = sitemapToPages(sitemapUrl);
   //

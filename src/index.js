@@ -22,7 +22,5 @@ server.use(prerender.httpHeaders());
 server.start(() => {
   console.log('[+] started');
 
-  autorecache({
-    configPath: '../data/config.json',
-  });
+  autorecache();
 });
