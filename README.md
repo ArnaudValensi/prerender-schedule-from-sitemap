@@ -131,7 +131,7 @@ Then
 
 NOTE: You can create a db on [mLab](https://mlab.com/)
 
-#Customization
+## Customization
 
 You can clone this repo and run `server.js`
 OR
