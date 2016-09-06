@@ -46,7 +46,7 @@ function cacheAllPages(urls) {
     return p.then(() => {
       const cacheUrl = `http://localhost:3000/${url}`;
 
-      console.log(clc.blue(`[@] PUT ${cacheUrl}`));
+      console.log(clc.blue(`[@] recache: PUT ${cacheUrl}`));
 
       return fetch(cacheUrl, { method: 'POST' });
     });

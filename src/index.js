@@ -1,6 +1,6 @@
+import clc from 'cli-color';
 import prerender from './prerender';
 import autorecache from './autorechache';
-import clc from 'cli-color';
 
 const server = prerender({
   workers: process.env.PRERENDER_NUM_WORKERS || 1,
