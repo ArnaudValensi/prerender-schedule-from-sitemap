@@ -109,12 +109,14 @@ In the `docker-compose.yml` file, update the volumes:
 	volumes:
 		- /srv/prerender/config:/data/config
 
-	and
+And
 
 	volumes:
 		- /srv/prerender/data:/data/db
 
- 	docker-compose up
+Then
+
+	$ docker-compose up
 
 ## Deploying your own on heroku
 
