@@ -1,0 +1,15 @@
+prerender-schedule-from-sitemap:
+  image: arnaudvalensi/prerender-schedule-from-sitemap
+  ports:
+    - 3000:3000
+  links:
+    - mongodb:database
+  environment:
+    - MONGODB_URL=mongodb://database:27017/prerender
+
+mongodb:
+  image: mongo:3.0.4
+  ports:
+    - "27017:27017"
+  volumes:
+    - /home/prerender-schedule-from-sitemap/data

@@ -1,7 +1,9 @@
 var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 
-var mongoUri = 'mongodb://localhost/prerender';
+var mongoUri = process.env.MONGODB_URL || 'mongodb://localhost/prerender';
+
+console.log('========== ' + process.env.MONGODB_URL);
 
 var database;
 
