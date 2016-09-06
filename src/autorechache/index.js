@@ -15,9 +15,7 @@ function runCron(ttl) {
   // TODO
 }
 
-module.exports = function (options) {
-  configPath = options.configPath;
-
+export default ({ configPath }) => {
   if (!configPath) {
     throw new Error('configPath needed');
   }
@@ -29,4 +27,4 @@ module.exports = function (options) {
   // cacheAllPages(pages, function () {
   //   runCron(ttl);
   // });
-}
+};
