@@ -1,4 +1,4 @@
-Prerender Service [![Stories in Ready](https://badge.waffle.io/prerender/prerender.png?label=ready&title=Ready)](https://waffle.io/prerender/prerender)
+Prerender Service With Automatique Cache Refresh
 ===========================
 
 Google, Facebook, Twitter, Yahoo, and Bing are constantly trying to view your website... but they don't execute javascript. That's why we built Prerender. Prerender is perfect for AngularJS SEO, BackboneJS SEO, EmberJS SEO, and any other javascript framework.
@@ -62,7 +62,7 @@ Request more middleware for a different framework in this [issue](https://github
 
 
 ## How it works
-This is a simple service that only takes a url and returns the rendered HTML (with all script tags removed).
+This is a simple service that only takes an url and returns the rendered HTML (with all script tags removed).
 
 Note: you should proxy the request through your server (using middleware) so that any relative links to CSS/images/etc still work.
 
@@ -70,32 +70,64 @@ Note: you should proxy the request through your server (using middleware) so tha
 
 `GET http://service.prerender.io/https://www.google.com/search?q=angular`
 
+## Configuration
+
+You can configure the service in the file `config/default.json`.
+
+* `sitemaps`: the link to your sitemap
+* `ttl`: Time To Live, the time in hours before refreshing all pages
 
 ## Running locally
 If you are trying to test Prerender with your website on localhost, you'll have to run the Prerender server locally so that Prerender can access your local dev website.
 
-If you are running the prerender service locally. Make sure you set your middleware to point to your local Prerender server with:
+You need to have a running mongodb server, and set its url:
 
-`export PRERENDER_SERVICE_URL=<your local url>`
+`export MONGODB_URL=mongodb://localhost/prerender`
 
-	$ git clone https://github.com/prerender/prerender.git
-	$ cd prerender
 	$ npm install
-	$ node server.js
+	$ npm start
 
 Prerender will now be running on http://localhost:3000. If you wanted to start a web app that ran on say, http://localhost:8000, you can now visit the URL http://localhost:3000/http://localhost:8000 to see how your app would render in Prerender.
 
 Keep in mind you will see 504s for relative URLs because the actual domain on that request is your prerender server. This isn't really an issue because once you proxy that request through the middleware, then the domain will be your website and those requests won't be sent to the prerender server.  For instance if you want to see your relative URLS working visit `http://localhost:8000?_escaped_fragment_=`
+
+## Deploying to docker
+
+You can use use `docker-compose`. It will install mongodb for you.
+
+Download the `docker-compose.yml` file on the host you want to deploy.
+
+Create a folder to store the configuration and the db data
+
+	$ mkdir /srv/prerender
+	$ mkdir /srv/prerender/config
+
+Copy the file `config/default.json` to `/srv.prerender/config`
+
+In the `docker-compose.yml` file, update the volumes:
+
+	volumes:
+		- /srv/prerender/config:/data/config
+
+	and
+
+	volumes:
+		- /srv/prerender/data:/data/db
+
+ 	docker-compose up
 
 ## Deploying your own on heroku
 
 	$ git clone https://github.com/prerender/prerender.git
 	$ cd prerender
 	$ heroku create
+	$ heroku config:set MONGODB_URL=mongodb://localhost/prerender # Change to your mongodb server
 	$ git push heroku master
-	
+
 >If you are installing Prerender under a Windows environment and you encounter errors related to 'node-gyp', you may need to follow these additional steps:
 >https://github.com/nodejs/node-gyp#installation
+
+NOTE: You can create a db on [mLab](https://mlab.com/)
 
 #Customization
 
@@ -370,7 +402,7 @@ so that you don't need to export your AWS credentials.
 > You can also export the S3_PREFIX_KEY variable so that the key (which is by default the complete requested URL) is
 prefixed. This is useful if you want to organize the snapshots in the same bucket.
 
-#### Region 
+#### Region
 
 
 By default, s3HtmlCache works with the US Standard region (East), if your bucket is localized in another region you can config it with an environment variable : `AWS_REGION`.
