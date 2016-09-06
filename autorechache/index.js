@@ -1,4 +1,8 @@
 
+function getConfig(configPath) {
+
+}
+
 function sitemapToPages(sitemapUrl) {
   // TODO
 }
@@ -12,16 +16,17 @@ function runCron(ttl) {
 }
 
 module.exports = function (options) {
-  sitemapUrl = options.sitemapUrl;
-  ttl = options.tll || 24; // TTL in hours
+  configPath = options.configPath;
 
-  if (!sitemapUrl) {
-    throw new Error('sitemapUrl needed');
+  if (!configPath) {
+    throw new Error('configPath needed');
   }
 
-  const pages = sitemapToPages(sitemapUrl);
+  const config = getConfig(configPath);
 
-  cacheAllPages(pages, function () {
-    runCron(ttl);
-  });
+  // const pages = sitemapToPages(sitemapUrl);
+  //
+  // cacheAllPages(pages, function () {
+  //   runCron(ttl);
+  // });
 }

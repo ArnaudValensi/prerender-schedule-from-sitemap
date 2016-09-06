@@ -26,6 +26,6 @@ server.start(function () {
   console.log('[+] started');
 
   autorecache({
-    sitemapUrl: sitemap
+    configPath: './data/config.json'
   });
 });
