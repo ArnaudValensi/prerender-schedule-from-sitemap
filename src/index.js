@@ -25,5 +25,5 @@ server.start(() => {
   console.log(clc.green('[+] started'));
 
   // Wait until phantomjs starts
-  setTimeout(autorecache, 4000);
+  setTimeout(autorecache, 20000);
 });
