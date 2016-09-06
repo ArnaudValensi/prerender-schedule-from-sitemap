@@ -1,8 +1,8 @@
 {
-  "author": "Prerender.io",
-  "name": "prerender",
-  "description": "Service to prerender Javascript rendered pages for SEO",
-  "version": "4.3.1",
+  "author": "Arnaud Valensi",
+  "name": "prerender-schedule-from-sitemap",
+  "description": "Service to prerender Javascript rendered pages for SEO based on a sitemap",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
