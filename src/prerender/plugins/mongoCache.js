@@ -6,6 +6,9 @@ var mongoUri = 'mongodb://localhost/prerender';
 var database;
 
 MongoClient.connect(mongoUri, function(err, db) {
+  if (err) {
+    console.error('Unbale to connect to mongodb: ', err);
+  }
   database = db;
 });
 
