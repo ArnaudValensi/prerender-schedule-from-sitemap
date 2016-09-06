@@ -6,10 +6,12 @@ prerender-schedule-from-sitemap:
     - mongodb:database
   environment:
     - MONGODB_URL=mongodb://database:27017/prerender
+  volumes:
+    - /your-local-path/config:/data/config
 
 mongodb:
   image: mongo:3.0.4
   ports:
     - "27017:27017"
   volumes:
-    - /home/prerender-schedule-from-sitemap/data
+    - /your-local-path/data:/data/db
