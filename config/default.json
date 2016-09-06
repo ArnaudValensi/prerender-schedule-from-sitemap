@@ -1,6 +1,4 @@
 {
-  "sitemaps": [
-    "http://www.chatel-properties.com/sitemap.xml"
-  ],
+  "sitemaps": "http://www.chatel-properties.com/sitemap.xml",
   "ttl": 24
 }
