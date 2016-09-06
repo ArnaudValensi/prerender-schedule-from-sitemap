@@ -3,6 +3,7 @@ import prerender from './prerender';
 import autorecache from './autorechache';
 
 const server = prerender({
+  port: process.env.PORT || 3000,
   workers: process.env.PRERENDER_NUM_WORKERS || 1,
   softIterations: 30,
 });

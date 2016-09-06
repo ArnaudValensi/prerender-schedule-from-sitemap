@@ -42,9 +42,11 @@ function jsSitemapToUrls(jsSitemap) {
 // It waits for the previous url to finish before starting a new one, in
 // purpose of keeping phantomjs stable.
 function cacheAllPages(urls) {
+  const port = process.env.PORT || 3000;
+
   return urls.reduce((p, url) => {
     return p.then(() => {
-      const cacheUrl = `http://localhost:3000/${url}`;
+      const cacheUrl = `http://localhost:${port}/${url}`;
 
       console.log(clc.blue(`[@] recache: PUT ${cacheUrl}`));
 
