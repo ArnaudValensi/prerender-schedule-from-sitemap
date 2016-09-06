@@ -3,8 +3,6 @@ var MongoClient = require('mongodb').MongoClient;
 
 var mongoUri = process.env.MONGODB_URL || 'mongodb://localhost/prerender';
 
-console.log('========== ' + process.env.MONGODB_URL);
-
 var database;
 
 MongoClient.connect(mongoUri, function(err, db) {
