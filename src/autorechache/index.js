@@ -41,7 +41,7 @@ function jsSitemapToUrls(jsSitemap) {
 // It waits for the previous url to finish before starting a new one, in
 // purpose of keeping phantomjs stable.
 function cacheAllPages(urls) {
-  urls.reduce((p, url) => {
+  return urls.reduce((p, url) => {
     return p.then(() => {
       const cacheUrl = `http://localhost:3000/${url}`;
 
@@ -49,20 +49,22 @@ function cacheAllPages(urls) {
 
       return fetch(cacheUrl, { method: 'POST' });
     });
-  }, Promise.resolve()).then((finalResult) => {
-    // done here
-    console.log('[+] done');
-  }, (err) => {
-    // error here
-    console.error('[!] error: ');
-  });
+  }, Promise.resolve());
 }
 
-export default () => {
+function cache() {
   const sitemapUrls = config.get('sitemaps');
 
   getSitemap(sitemapUrls)
     .then(xmlTojs)
     .then(jsSitemapToUrls)
-    .then(cacheAllPages);
+    .then(cacheAllPages)
+    .then(() => console.log('[+] done'))
+    .catch((err) => {
+      console.error('[!] error: ');
+    });
+}
+
+export default () => {
+  cache();
 };
