@@ -67,5 +67,11 @@ function cache() {
 }
 
 export default () => {
+  const recacheInterval = config.get('ttl'); // recache inteval in hour
+
+  setInterval(() => {
+    cache();
+  }, recacheInterval * 1000 * 60 * 60);
+
   cache();
 };
