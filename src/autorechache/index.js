@@ -37,12 +37,25 @@ function jsSitemapToUrls(jsSitemap) {
   });
 }
 
+// Iterate over urls, make requests to update cache.
+// It waits for the previous url to finish before starting a new one, in
+// purpose of keeping phantomjs stable.
 function cacheAllPages(urls) {
-  // TODO
-}
+  urls.reduce((p, url) => {
+    return p.then(() => {
+      const cacheUrl = `http://localhost:3000/${url}`;
 
-function runCron(ttl) {
-  // TODO
+      console.log(`[@] PUT ${cacheUrl}`);
+
+      return fetch(cacheUrl, { method: 'POST' });
+    });
+  }, Promise.resolve()).then((finalResult) => {
+    // done here
+    console.log('[+] done');
+  }, (err) => {
+    // error here
+    console.error('[!] error: ');
+  });
 }
 
 export default () => {
@@ -51,9 +64,5 @@ export default () => {
   getSitemap(sitemapUrls)
     .then(xmlTojs)
     .then(jsSitemapToUrls)
-    // .then(cacheAllPages)
-    .then((result) => {
-      console.log(result);
-      console.log(result.length);
-    });
+    .then(cacheAllPages);
 };

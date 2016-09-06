@@ -22,5 +22,5 @@ server.use(prerender.httpHeaders());
 server.start(() => {
   console.log('[+] started');
 
-  autorecache();
+  setTimeout(autorecache, 4000);
 });
