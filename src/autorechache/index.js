@@ -2,6 +2,7 @@ import config from 'config';
 import fetch from 'node-fetch';
 import { parseString } from 'xml2js';
 import _ from 'underscore';
+import clc from 'cli-color';
 
 function getSitemap(sitemapUrl) {
   return fetch(sitemapUrl)
@@ -45,7 +46,7 @@ function cacheAllPages(urls) {
     return p.then(() => {
       const cacheUrl = `http://localhost:3000/${url}`;
 
-      console.log(`[@] PUT ${cacheUrl}`);
+      console.log(clc.blue(`[@] PUT ${cacheUrl}`));
 
       return fetch(cacheUrl, { method: 'POST' });
     });
@@ -59,9 +60,9 @@ function cache() {
     .then(xmlTojs)
     .then(jsSitemapToUrls)
     .then(cacheAllPages)
-    .then(() => console.log('[+] done'))
+    .then(() => console.log(clc.green('[+] done')))
     .catch((err) => {
-      console.error('[!] error: ');
+      console.error(clc.red('[!] error: '));
     });
 }
 
