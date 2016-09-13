@@ -95,7 +95,7 @@ Keep in mind you will see 504s for relative URLs because the actual domain on th
 
 You can use use `docker-compose`. It will install mongodb for you.
 
-Download the `docker-compose.yml` file on the host you want to deploy.
+Clone or download this repository where you want to deploy.
 
 Create a folder to store the configuration and the db data
 
@@ -116,6 +116,7 @@ And
 
 Then
 
+	$ docker-compose build
 	$ docker-compose up
 
 ## Deploying your own on heroku
