@@ -34,7 +34,9 @@ function jsSitemapToUrls(jsSitemap) {
       return resolve();
     }
 
-    resolve(_.pluck(url, 'loc').reduce((memo, url) => memo.concat(url), []));
+    resolve(_.pluck(url, 'loc').reduce((memo, url) => {
+      return memo.concat(decodeURI(url));
+    }, []));
   });
 }
 
