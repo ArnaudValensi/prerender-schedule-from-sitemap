@@ -48,7 +48,7 @@ function cacheAllPages(urls) {
 
   return urls.reduce((p, url) => {
     return p.then(() => {
-      const cacheUrl = `http://localhost:${port}/${url}`;
+      const cacheUrl = `http://localhost:${port}/${url}?_escaped_fragment_=`;
 
       console.log(clc.blue(`[@] recache: PUT ${cacheUrl}`));
 
